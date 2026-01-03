@@ -2,6 +2,11 @@
 
 Flutter project with a UI screen that includes a button to learn widget usage and basic interaction handling.
 
+
+## Preview
+![UI Screenshot](good_luck_screen.png)
+
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
@@ -14,4 +19,5 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+
 
