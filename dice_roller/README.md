@@ -1,6 +1,8 @@
 # dice_roller
 
-A new Flutter project.
+On tapping the Roll button, the dice animates and generates a random value, making it a fun project to understand button interaction, state changes, and UI updates in Flutter.
+
+
 
 ## Getting Started
 
@@ -14,3 +16,4 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+
