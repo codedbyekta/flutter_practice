@@ -4,7 +4,7 @@ On tapping the Roll button, the dice animates and generates a random value, maki
 
 
 # Preview
- ![UI](image1.png)  ![UI](image2.png) 
+ |![UI](image1.png)|  |![UI](image2.png)| 
 
 
 ## Getting Started
@@ -19,6 +19,7 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+
 
 
 
