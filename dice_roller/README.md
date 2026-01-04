@@ -6,7 +6,7 @@ On tapping the Roll button, the dice animates and generates a random value, maki
 # Preview
 <p align="center">
   <img src="dice_roller_1.png" width="43%" />
-  <img src="dice_roller_2.png" width="45%" />
+  <img src="dice_roller_2.png" width="46%" />
 </p>
 
 
@@ -22,6 +22,7 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+
 
 
 
