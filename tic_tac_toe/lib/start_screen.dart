@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tic_tac_toe/selectMode.dart';
 
 class StartScreen extends StatefulWidget {
   const StartScreen({super.key});
@@ -14,7 +15,10 @@ class _StartScreenState extends State<StartScreen> {
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
-            colors: [Colors.amberAccent, const Color.fromARGB(254, 88, 241, 6)],
+            colors: [
+              const Color.fromARGB(255, 26, 220, 145),
+              const Color.fromARGB(254, 88, 241, 6),
+            ],
             begin: Alignment.bottomRight,
             end: Alignment.topLeft,
           ),
@@ -37,8 +41,20 @@ class _StartScreenState extends State<StartScreen> {
                 ),
               ),
               ElevatedButton(
-                onPressed: () {},style: ElevatedButton.styleFrom(backgroundColor: Colors.black,foregroundColor: Colors.white),
-                child: Text("Start", style: TextStyle(fontWeight: FontWeight.bold)),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Selectmode()),
+                  );
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.black,
+                  foregroundColor: Colors.white,
+                ),
+                child: Text(
+                  "Start",
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
               ),
             ],
           ),
@@ -47,3 +63,5 @@ class _StartScreenState extends State<StartScreen> {
     );
   }
 }
+
+
