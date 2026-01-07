@@ -12,25 +12,41 @@ class _SelectmodeState extends State<Selectmode> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          "TIC TAC TOE",
-          style: TextStyle(
-            color: Colors.black,
-            fontFamily: "DancingScript",
-            fontWeight: FontWeight.bold,
-          ),
-        ),
+        title: Text("SELECT MODE", style: TextStyle(color: Colors.black)),
         backgroundColor: const Color.fromARGB(255, 26, 220, 145),
       ),
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
-            colors: [const Color.fromARGB(255, 26, 220, 145), const Color.fromARGB(254, 88, 241, 6)],
+            colors: [
+              const Color.fromARGB(255, 26, 220, 145),
+              const Color.fromARGB(254, 88, 241, 6),
+            ],
             begin: Alignment.bottomRight,
             end: Alignment.topLeft,
+          ),
+        ),
+        child: Center(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Image.asset("assets/images/CPU.png", width: 120),
+
+              const SizedBox(height: 10),
+              ElevatedButton(
+                onPressed: () {},
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.black,
+                  foregroundColor: Colors.white,
+                ),
+                child: const Text("CPU"),
+              ),
+
+              const SizedBox(height: 40),
+            ],
           ),
         ),
       ),
     );
   }
-}
+
