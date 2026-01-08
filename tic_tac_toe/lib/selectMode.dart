@@ -43,10 +43,25 @@ class _SelectmodeState extends State<Selectmode> {
               ),
 
               const SizedBox(height: 40),
+              Image.asset("assets/images/gamer.png", width: 120),
+
+              const SizedBox(height: 10),
+              ElevatedButton(
+                onPressed: () {},
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.black,
+                  foregroundColor: Colors.white,
+                ),
+                child: const Text("2 PLAYER"),
+              ),
+
+              const SizedBox(height: 40),
             ],
           ),
         ),
       ),
     );
   }
+}
+
 
