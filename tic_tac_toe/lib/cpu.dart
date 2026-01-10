@@ -9,8 +9,29 @@ class Cpu extends StatefulWidget {
 
 class _CpuState extends State<Cpu> {
   List gridValues = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+  List LeftValues = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+  List winnings = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6],
+  ];
   var playerChoice = "X";
   var cpuChoice = "0";
+  var isClicked = 0;
+
+  winnerCheck() {
+    winnings.forEach((value) {
+      if (gridValues[value[0]] == playerChoice &&
+          gridValues[value[1]] == playerChoice &&
+          gridValues[value[2]] == playerChoice) {
+        print("Winner");
+      }
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,3 +75,4 @@ class _CpuState extends State<Cpu> {
     );
   }
 }
+
