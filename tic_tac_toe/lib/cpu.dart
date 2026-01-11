@@ -23,12 +23,12 @@ class _CpuState extends State<Cpu> {
   var cpuChoice = "0";
   var isClicked = 0;
 
-  winnerCheck() {
+  winnerCheck(choice) {
     winnings.forEach((value) {
-      if (gridValues[value[0]] == playerChoice &&
-          gridValues[value[1]] == playerChoice &&
-          gridValues[value[2]] == playerChoice) {
-        print("Winner");
+      if (gridValues[value[0]] == choice &&
+          gridValues[value[1]] == choice &&
+          gridValues[value[2]] == choice) {
+        print("$choice is the Winner");
       }
     });
   }
@@ -40,27 +40,6 @@ class _CpuState extends State<Cpu> {
         backgroundColor: const Color.fromARGB(255, 26, 220, 145),
       ),
       body: Container(
-        child: GridView.builder(
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 3,
-            crossAxisSpacing: 8,
-            mainAxisSpacing: 8,
-          ),
-          itemCount: gridValues.length,
-          itemBuilder: (context, index) {
-            return ElevatedButton(
-              onPressed: () {},
-              style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.black,
-                  foregroundColor: Colors.white,
-                ),
-              child: Text(
-                gridValues[index].toString(),
-                style: TextStyle(fontSize: 30),
-              ),
-            );
-          },
-        ),
         decoration: BoxDecoration(
           gradient: LinearGradient(
             colors: [
@@ -71,8 +50,45 @@ class _CpuState extends State<Cpu> {
             end: Alignment.topLeft,
           ),
         ),
+        child: Column(
+          children: [
+            Expanded(
+              child: GridView.builder(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 3,
+                  crossAxisSpacing: 8,
+                  mainAxisSpacing: 8,
+                ),
+                itemCount: gridValues.length,
+                itemBuilder: (context, index) {
+                  return ElevatedButton(
+                    onPressed: () {
+                      setState(() {
+                        if (gridValues[index] != playerChoice ||
+                            gridValues[index] != cpuChoice) {
+                        } else {
+                          playerMove(index);
+                          cpuMove();
+                        }
+                      });
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.black,
+                      foregroundColor: Colors.white,
+                    ),
+                    child: Text(
+                      gridValues[index].toString(),
+                      style: TextStyle(fontSize: 30),
+                    ),
+                  );
+                },
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
 }
+
 
