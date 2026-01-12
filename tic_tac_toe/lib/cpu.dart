@@ -22,6 +22,7 @@ class _CpuState extends State<Cpu> {
   var playerChoice = "X";
   var cpuChoice = "0";
   var isClicked = 0;
+  String winner = "";
 
   winnerCheck(choice) {
     winnings.forEach((value) {
@@ -29,9 +30,29 @@ class _CpuState extends State<Cpu> {
           gridValues[value[1]] == choice &&
           gridValues[value[2]] == choice) {
         print("$choice is the Winner");
+        winner = choice;
+      } else if (LeftValues.isEmpty) {
+        print("Draw");
       }
     });
   }
+
+  cpuMove() {
+    LeftValues.shuffle();
+    var value = LeftValues[0];
+    gridValues[gridValues.indexOf(value)] = cpuChoice;
+    LeftValues.remove(value);
+    winnerCheck(cpuChoice);
+  }
+
+  playerMove(index) {
+    {
+      LeftValues.remove(gridValues[index]);
+      gridValues[index] = playerChoice;
+      winnerCheck(playerChoice);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,26 +83,37 @@ class _CpuState extends State<Cpu> {
                 itemCount: gridValues.length,
                 itemBuilder: (context, index) {
                   return ElevatedButton(
-                    onPressed: () {
-                      setState(() {
-                        if (gridValues[index] != playerChoice ||
-                            gridValues[index] != cpuChoice) {
-                        } else {
-                          playerMove(index);
-                          cpuMove();
-                        }
-                      });
-                    },
+                    onPressed: (winner.isEmpty)
+                        ? () {
+                            setState(() {
+                              if ((gridValues[index] == playerChoice) ||
+                                  (gridValues[index] == cpuChoice)) {
+                              } else {
+                                playerMove(index);
+                                cpuMove();
+                              }
+                            });
+                          }
+                        : () {},
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.black,
                       foregroundColor: Colors.white,
                     ),
-                    child: Text(
-                      gridValues[index].toString(),
-                      style: TextStyle(fontSize: 30),
+                    child: Center(
+                      child: Text(
+                        gridValues[index].toString(),
+                        style: TextStyle(fontSize: 30),
+                      ),
                     ),
                   );
                 },
+              ),
+            ),
+            SizedBox(
+              height: 300,
+              child: Text(
+                "Hey winner is $winner",
+                style: TextStyle(fontSize: 30),
               ),
             ),
           ],
@@ -90,5 +122,6 @@ class _CpuState extends State<Cpu> {
     );
   }
 }
+
 
 
