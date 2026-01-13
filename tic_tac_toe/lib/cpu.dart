@@ -10,6 +10,17 @@ class Cpu extends StatefulWidget {
 class _CpuState extends State<Cpu> {
   List gridValues = [1, 2, 3, 4, 5, 6, 7, 8, 9];
   List LeftValues = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+  List colorList = [
+    Colors.black,
+    Colors.black,
+    Colors.black,
+    Colors.black,
+    Colors.black,
+    Colors.black,
+    Colors.black,
+    Colors.black,
+    Colors.black,
+  ];
   List winnings = [
     [0, 1, 2],
     [3, 4, 5],
@@ -40,6 +51,12 @@ class _CpuState extends State<Cpu> {
   cpuMove() {
     LeftValues.shuffle();
     var value = LeftValues[0];
+    colorList[gridValues.indexOf(value)] = const Color.fromARGB(
+      253,
+      237,
+      61,
+      61,
+    );
     gridValues[gridValues.indexOf(value)] = cpuChoice;
     LeftValues.remove(value);
     winnerCheck(cpuChoice);
@@ -47,6 +64,7 @@ class _CpuState extends State<Cpu> {
 
   playerMove(index) {
     {
+      colorList[index] = const Color.fromARGB(255, 26, 220, 145);
       LeftValues.remove(gridValues[index]);
       gridValues[index] = playerChoice;
       winnerCheck(playerChoice);
@@ -57,7 +75,10 @@ class _CpuState extends State<Cpu> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("TIC TAC TOE"),
+        title: Text(
+          "TIC TAC TOE",
+          style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+        ),
         backgroundColor: const Color.fromARGB(255, 26, 220, 145),
       ),
       body: Container(
@@ -82,27 +103,36 @@ class _CpuState extends State<Cpu> {
                 ),
                 itemCount: gridValues.length,
                 itemBuilder: (context, index) {
-                  return ElevatedButton(
-                    onPressed: (winner.isEmpty)
-                        ? () {
-                            setState(() {
-                              if ((gridValues[index] == playerChoice) ||
-                                  (gridValues[index] == cpuChoice)) {
-                              } else {
-                                playerMove(index);
-                                cpuMove();
+                  return Center(
+                    child: SizedBox(
+                      width: 100,
+                      height: 100,
+                      child: ElevatedButton(
+                        onPressed: (winner.isEmpty)
+                            ? () {
+                                setState(() {
+                                  if ((gridValues[index] == playerChoice) ||
+                                      (gridValues[index] == cpuChoice)) {
+                                  } else {
+                                    playerMove(index);
+                                    if (LeftValues.isNotEmpty) {
+                                      cpuMove();
+                                    }
+                                  }
+                                });
                               }
-                            });
-                          }
-                        : () {},
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.black,
-                      foregroundColor: Colors.white,
-                    ),
-                    child: Center(
-                      child: Text(
-                        gridValues[index].toString(),
-                        style: TextStyle(fontSize: 30),
+                            : () {},
+                        style: ButtonStyle(
+                          backgroundColor: WidgetStatePropertyAll(
+                            colorList[index],
+                          ),
+                        ),
+                        child: Center(
+                          child: Text(
+                            gridValues[index].toString(),
+                            style: TextStyle(fontSize: 30, color: Colors.white),
+                          ),
+                        ),
                       ),
                     ),
                   );
@@ -110,18 +140,25 @@ class _CpuState extends State<Cpu> {
               ),
             ),
             SizedBox(
-              height: 300,
+              height: 150,
               child: Text(
-                "Hey winner is $winner",
-                style: TextStyle(fontSize: 30),
+                (winner != "Draw") ? "Hey winner is $winner" : "GAME DRAW!!",
+                style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
               ),
             ),
           ],
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        backgroundColor: Colors.black,
+        child: Icon(Icons.restart_alt, color: Colors.white),
+      ),
     );
   }
 }
+}
+
 
 
 
