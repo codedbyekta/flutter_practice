@@ -36,16 +36,20 @@ class _CpuState extends State<Cpu> {
   String winner = "";
 
   winnerCheck(choice) {
+    bool isWinner = false;
     winnings.forEach((value) {
       if (gridValues[value[0]] == choice &&
           gridValues[value[1]] == choice &&
           gridValues[value[2]] == choice) {
         print("$choice is the Winner");
         winner = choice;
-      } else if (LeftValues.isEmpty) {
-        print("Draw");
+        isWinner = true;
       }
     });
+    if (!isWinner && LeftValues.isEmpty) {
+      print("Draw");
+      winner = "Draw";
+    }
   }
 
   cpuMove() {
@@ -69,6 +73,25 @@ class _CpuState extends State<Cpu> {
       gridValues[index] = playerChoice;
       winnerCheck(playerChoice);
     }
+  }
+
+  void resetGame() {
+    setState(() {
+      gridValues = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+      LeftValues = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+      colorList = [
+        Colors.black,
+        Colors.black,
+        Colors.black,
+        Colors.black,
+        Colors.black,
+        Colors.black,
+        Colors.black,
+        Colors.black,
+        Colors.black,
+      ];
+      winner = "";
+    });
   }
 
   @override
@@ -150,14 +173,15 @@ class _CpuState extends State<Cpu> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: resetGame,
         backgroundColor: Colors.black,
         child: Icon(Icons.restart_alt, color: Colors.white),
       ),
     );
   }
 }
-}
+
+
 
 
 
