@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:tic_tac_toe/cpu.dart';
+import 'package:tic_tac_toe/two_player.dart';
 
 class Selectmode extends StatefulWidget {
   const Selectmode({super.key});
@@ -34,7 +36,12 @@ class _SelectmodeState extends State<Selectmode> {
 
               const SizedBox(height: 10),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Cpu()),
+                  );
+                },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.black,
                   foregroundColor: Colors.white,
@@ -47,7 +54,12 @@ class _SelectmodeState extends State<Selectmode> {
 
               const SizedBox(height: 10),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => TwoPlayer()),
+                  );
+                },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.black,
                   foregroundColor: Colors.white,
@@ -63,5 +75,7 @@ class _SelectmodeState extends State<Selectmode> {
     );
   }
 }
+
+
 
 
