@@ -17,6 +17,7 @@ class _StartscreenState extends State<Startscreen> {
           gradient: LinearGradient(
             colors: [
               const Color.fromARGB(255, 12, 78, 234),
+              Colors.cyanAccent,
               const Color.fromARGB(253, 242, 244, 241),
             ],
             begin: Alignment.bottomRight,
@@ -27,19 +28,7 @@ class _StartscreenState extends State<Startscreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Image.asset("assets/images/tictactoe.png", width: 300),
-
-              Center(
-                child: Text(
-                  "QUIZ",
-                  style: TextStyle(
-                    fontFamily: "DancingScript",
-                    fontWeight: FontWeight.bold,
-                    fontSize: 30,
-                    color: Colors.black,
-                  ),
-                ),
-              ),
+              Image.asset("assets/images/quiz.png", width: 300),
               ElevatedButton(
                 onPressed: () {
                   Navigator.push(
