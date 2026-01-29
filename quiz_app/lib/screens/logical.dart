@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:quiz_app/answerbutton.dart';
+import 'package:quiz_app/data/ques_ans.dart';
+import 'package:quiz_app/screens/quiz_notifier.dart';
 
 class Logical extends StatefulWidget {
   const Logical({super.key});
@@ -9,7 +13,8 @@ class Logical extends StatefulWidget {
 
 class _LogicalState extends State<Logical> with SingleTickerProviderStateMixin {
   late AnimationController _controller;
-
+  int currentQuesIndex = 0;
+  late String currQues;
   @override
   void initState() {
     super.initState();
@@ -24,6 +29,8 @@ class _LogicalState extends State<Logical> with SingleTickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    // currQues = logquesAns[currentQuesIndex].question;
+     var ob = Provider.of<QuizNotifier>(context);
     return Scaffold(
       appBar: AppBar(
         leading: Image.asset("assets/images/quiz.png"),
@@ -34,17 +41,29 @@ class _LogicalState extends State<Logical> with SingleTickerProviderStateMixin {
         decoration: BoxDecoration(
           gradient: LinearGradient(
             colors: [
-              Colors.white,
-              const Color.fromARGB(255, 196, 244, 244),
-              const Color.fromARGB(255, 196, 244, 244),
-              const Color.fromARGB(255, 196, 244, 244),
-              const Color.fromARGB(255, 196, 244, 244),
+              const Color.fromARGB(255, 158, 193, 208),
+              Colors.white
             ],
             begin: Alignment.bottomRight,
             end: Alignment.topLeft,
           ),
         ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              logquesAns[ob.currentQuesIndex].question,
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            ),
+            ...logquesAns[ob.currentQuesIndex].answer.map((ans) {
+              return Answerbutton(onTapAnswer:(){
+                ob.changeQA(ans);
+              } , answer: ans);
+            }),
+          ],
+        ),
       ),
     );
   }
 }
+
