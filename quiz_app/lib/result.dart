@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:quiz_app/data/ques_ans.dart';
 
 class Result extends StatelessWidget {
   const Result({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Scaffold(appBar: AppBar(title: Text("RESULT"),),
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
@@ -22,7 +23,9 @@ class Result extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-             Text("RESULT SCREEN")
+             Text("Total Questions : ${logquesAns.length}",style: TextStyle(fontSize: 24),),ElevatedButton(onPressed: (){ob.totalCorrect()}, child: Text("Calculate Result")),
+             Text("Correct Ans : ${ob.correctCount}")
+
             ],
           ),
         ),
