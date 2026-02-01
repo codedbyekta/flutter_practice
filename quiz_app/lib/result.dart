@@ -23,8 +23,7 @@ class Result extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-             Text("Total Questions : ${logquesAns.length}",style: TextStyle(fontSize: 24),),ElevatedButton(onPressed: (){ob.totalCorrect()}, child: Text("Calculate Result")),
-             Text("Correct Ans : ${ob.correctCount}")
+            
 
             ],
           ),
@@ -33,3 +32,4 @@ class Result extends StatelessWidget {
     );
   }
 }
+
