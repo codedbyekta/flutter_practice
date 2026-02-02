@@ -1,5 +1,12 @@
 class LogicalQuestion {
-  LogicalQuestion(this.question,this.answer);
-  String question;
-  List<String> answer;
-}
+  late String question;
+  late List<String> answer;
+  late List<String> Ans;
+
+    LogicalQuestion(question,answer){
+      this.question = question;
+      this.answer = answer;
+      this.Ans = List.from(answer);
+      this.Ans.shuffle();
+    }
+} 
