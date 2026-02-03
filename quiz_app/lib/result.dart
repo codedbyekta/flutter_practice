@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:quiz_app/data/ques_ans.dart';
+import 'package:quiz_app/quiz_notifier.dart';
 
 class Result extends StatelessWidget {
-  const Result({super.key});
-
+  Result({super.key, required this.last_ans});
+  String last_ans;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(appBar: AppBar(title: Text("RESULT"),),
+    var ob = Provider.of<QuizNotifier>(context);
+    ob.userAnswer.add([logquesAns[logquesAns.length - 1].question, last_ans]);
+    return Scaffold(
+      appBar: AppBar(title: Text("RESULT")),
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
@@ -23,8 +28,17 @@ class Result extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-            
-
+              Text(
+                "TOTAL QUESTIONS : ${logquesAns.length}",
+                style: TextStyle(fontSize: 24),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  ob.totalCorrect();
+                },
+                child: Text("CALCULATE RESULT"),
+              ),
+              Text("CORRECT ANSWER : ${ob.correctCount}"),
             ],
           ),
         ),
