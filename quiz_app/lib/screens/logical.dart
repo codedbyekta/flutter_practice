@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:quiz_app/answerbutton.dart';
 import 'package:quiz_app/data/ques_ans.dart';
-import 'package:quiz_app/screens/quiz_notifier.dart';
+import 'package:quiz_app/quiz_notifier.dart';
 
 class Logical extends StatefulWidget {
   const Logical({super.key});
@@ -30,7 +30,7 @@ class _LogicalState extends State<Logical> with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     // currQues = logquesAns[currentQuesIndex].question;
-     var ob = Provider.of<QuizNotifier>(context);
+    var ob = Provider.of<QuizNotifier>(context);
     return Scaffold(
       appBar: AppBar(
         leading: Image.asset("assets/images/quiz.png"),
@@ -41,8 +41,11 @@ class _LogicalState extends State<Logical> with SingleTickerProviderStateMixin {
         decoration: BoxDecoration(
           gradient: LinearGradient(
             colors: [
-              const Color.fromARGB(255, 158, 193, 208),
-              Colors.white
+              Colors.white,
+              const Color.fromARGB(255, 196, 244, 244),
+              const Color.fromARGB(255, 196, 244, 244),
+              const Color.fromARGB(255, 196, 244, 244),
+              const Color.fromARGB(255, 196, 244, 244),
             ],
             begin: Alignment.bottomRight,
             end: Alignment.topLeft,
@@ -56,9 +59,12 @@ class _LogicalState extends State<Logical> with SingleTickerProviderStateMixin {
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
             ...logquesAns[ob.currentQuesIndex].answer.map((ans) {
-              return Answerbutton(onTapAnswer:(){
-                ob.changeQA(ans);
-              } , answer: ans);
+              return Answerbutton(
+                onTapAnswer: () {
+                  ob.changeQA(ans);
+                },
+                answer: ans,
+              );
             }),
           ],
         ),
@@ -66,4 +72,6 @@ class _LogicalState extends State<Logical> with SingleTickerProviderStateMixin {
     );
   }
 }
+
+
 
