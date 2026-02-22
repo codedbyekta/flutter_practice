@@ -1,6 +1,8 @@
-import 'package:flutter/material.dart';
-import 'package:mobile_scanner/mobile_scanner.dart';
+import 'dart:io';
 
+import 'package:flutter/material.dart';
+import 'package:barcode_scan2/barcode_scan2.dart';
+import 'package:image_picker/image_picker.dart';
 class BarCode extends StatefulWidget {
   const BarCode({super.key});
 
@@ -9,7 +11,21 @@ class BarCode extends StatefulWidget {
 }
 
 class _BarCodeState extends State<BarCode> {
-  String barcode = "";
+  String result = "";
+  final ImagePicker picker = ImagePicker();
+
+  Future<void> scanBarCode() async
+  { 
+    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+    if(pickedFile != null)
+    {
+       File img = File(pickedFile.path);
+       BarcodeScanner.scan(options: ScanOptions(useCamera: -1)
+       path: img.path); 
+       
+    }
+    pickedFile = file(PickedFile.path);
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,3 +49,5 @@ class _BarCodeState extends State<BarCode> {
     );
   }
 }
+
+
