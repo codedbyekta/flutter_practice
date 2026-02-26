@@ -27,28 +27,29 @@ class _BarCodeState extends State<BarCode> {
     pickedFile = file(PickedFile.path);
   }
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("BARCODE SCANNER", style: TextStyle(fontSize: 24)),
-      ),
-      body: Container(
-        child: Column(
-          children: [
-            MobileScanner(
-              onDetect: (barcodes) {
-                setState(() {
-                  this.barcode = barcode.toString() ?? "barcode not detected";
-                });
-              },
-            ),
-            Text("Barcode = $barcode"),
-          ],
-        ),
-      ),
-    );
-  }
-}
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: const Text("BARCODE SCANNER", style: TextStyle(fontSize: 24)),
+//       ),
+//       body: Container(
+//         child: Column(
+//           children: [
+//             MobileScanner(
+//               onDetect: (barcodes) {
+//                 setState(() {
+//                   this.barcode = barcode.toString() ?? "barcode not detected";
+//                 });
+//               },
+//             ),
+//             Text("Barcode = $barcode"),
+//           ],
+//         ),
+//       ),
+//     );
+//   }
+// }
+
 
 
 
